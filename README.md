@@ -43,9 +43,26 @@ A responsive, mobile-first web application designed to be your real-time strateg
     ```
     Open [http://localhost:5173](http://localhost:5173) to view it in your browser.
 
-4.  **Build for production**
+4.  **Build and Run for Production**
     ```bash
     npm run build
+    npm run preview -- --host 0.0.0.0
+    ```
+
+5.  **Run with PM2 (Background Process)**
+    To keep the app running in the background and restart on reboot:
+    ```bash
+    # Install PM2 globally
+    sudo npm install -g pm2
+
+    # Start the app
+    pm2 start npm --name "poker-app" -- run preview -- --host 0.0.0.0
+
+    # Save the process list
+    pm2 save
+
+    # Generate startup script (copy and paste the output command)
+    pm2 startup
     ```
 
 ## 🎮 How to Use
