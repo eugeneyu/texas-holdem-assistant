@@ -61,7 +61,18 @@ sudo docker build -t texas-holdem .
 sudo docker run -d -p 80:80 --name poker-app texas-holdem
 ```
 
-### 4. Access the App
+### 4. Updating the Docker App
+When you have pushed new code to GitHub:
+```bash
+cd texas-holdem-assistant
+git pull
+sudo docker build -t texas-holdem .
+sudo docker stop poker-app
+sudo docker rm poker-app
+sudo docker run -d -p 80:80 --name poker-app texas-holdem
+```
+
+### 5. Access the App
 Open your browser and visit: `http://<YOUR_VM_EXTERNAL_IP>`
 
 ---
@@ -104,4 +115,31 @@ npm run dev -- --host 0.0.0.0
 npm run build
 npm run preview -- --host 0.0.0.0
 ```
-Access at `http://<YOUR_VM_EXTERNAL_IP>:5173` (or 4173).
+
+### 5. Running with PM2 (Background Process)
+To keep the app running after you disconnect:
+```bash
+# Install PM2
+npm install -g pm2
+
+# Build the app first
+npm run build
+
+# Start the preview server
+pm2 start npm --name "poker-app" -- run preview -- --host 0.0.0.0
+
+# Save process list
+pm2 save
+```
+
+### 6. Updating the PM2 App
+When you have pushed new code:
+```bash
+cd texas-holdem-assistant
+git pull
+npm install     # In case dependencies changed
+npm run build   # <--- CRITICAL: Rebuild the assets
+pm2 restart poker-app
+```
+
+Access at `http://<YOUR_VM_EXTERNAL_IP>:4173` (or 5173 for dev).
