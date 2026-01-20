@@ -44,7 +44,7 @@ export const CardDisplay: React.FC<CardDisplayProps> = ({
     'h': 'text-red-500',
     'd': 'text-blue-400',
     'c': 'text-green-500',
-    's': 'text-gray-200',
+    's': 'text-purple-500',
   }[card.suit];
 
   const suitSymbol = {

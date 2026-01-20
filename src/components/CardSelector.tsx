@@ -9,7 +9,7 @@ interface CardSelectorProps {
 
 const RANKS: Rank[] = ['A', 'K', 'Q', 'J', 'T', '9', '8', '7', '6', '5', '4', '3', '2'];
 const SUITS: { suit: Suit; label: string; color: string }[] = [
-  { suit: 's', label: '♠', color: 'text-gray-200' },
+  { suit: 's', label: '♠', color: 'text-purple-500' },
   { suit: 'h', label: '♥', color: 'text-red-500' },
   { suit: 'c', label: '♣', color: 'text-green-500' },
   { suit: 'd', label: '♦', color: 'text-blue-400' }, // Using blue for diamonds to distinguish from hearts in dark mode, or standard red
@@ -71,9 +71,7 @@ export const CardSelector: React.FC<CardSelectorProps> = ({ onSelect, onCancel }
                 onClick={() => handleSuitClick(suit)}
                 className={classNames(
                   "h-20 bg-gray-800 rounded-lg text-4xl flex items-center justify-center hover:bg-gray-700 border border-gray-700 transition-colors",
-                  color === 'text-red-500' ? 'text-red-500' : 
-                  color === 'text-blue-400' ? 'text-blue-400' : 
-                  color === 'text-green-500' ? 'text-green-500' : 'text-gray-200'
+                  color
                 )}
               >
                 {label}
